@@ -1,11 +1,16 @@
-class StoryData{
+class StoryData {
   final int id;
   final String name;
   final String imageFileName;
   final String iconFileName;
   final bool isViewed;
 
-  StoryData({required this.id, required this.name, required this.imageFileName, required this.iconFileName, required this.isViewed});
+  StoryData(
+      {required this.id,
+      required this.name,
+      required this.imageFileName,
+      required this.iconFileName,
+      required this.isViewed});
 }
 
 class Category {
@@ -35,8 +40,6 @@ class PostData {
       required this.isBookmarked,
       required this.imageFileName});
 }
-
-
 
 class AppDatabase {
   static List<StoryData> get stories {
@@ -139,6 +142,20 @@ class AppDatabase {
           imageFileName: 'small_post_3.jpg'),
     ];
   }
+
+  static List<OnBoardingItem> get onBoardingItems {
+    List<OnBoardingItem> items = [];
+    for (var i = 0; i < 4; i++) {
+      items.add(OnBoardingItem('Read the article you want instantly',
+          'You can read thousands of articles on Blog Club, save them in the application and share them with your loved ones.'));
+    }
+    return items;
+  }
 }
 
+class OnBoardingItem {
+  final String title;
+  final String description;
 
+  OnBoardingItem(this.title, this.description);
+}
