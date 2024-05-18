@@ -108,7 +108,7 @@ class AppDatabase {
       Category(id: 104, title: 'Adventure', imageFileName: 'large_post_4.jpg'),
       Category(
           id: 105,
-          title: 'Artificial Intelligence',
+          title: 'Artificial Intelligence dasfvsfbdfgzdfgf',
           imageFileName: 'large_post_5.jpg'),
       Category(id: 106, title: 'Economy', imageFileName: 'large_post_6.jpg'),
     ];

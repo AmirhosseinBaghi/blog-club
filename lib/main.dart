@@ -1,8 +1,9 @@
-import 'dart:html';
+import 'package:blog_club/homepage.dart';
+import 'package:blog_club/splashscreen.dart';
+import 'package:flutter/cupertino.dart';
 
-import 'package:blog_club/data.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -42,174 +43,24 @@ class MyApp extends StatelessWidget {
                 color: secondaryTextColor,
                 fontSize: 12)),
       ),
-      home: const MyHomeScreen(),
+      // home: const MyHomeScreen(),
+      home: SplashScreen(),
     );
   }
 }
 
-class MyHomeScreen extends StatelessWidget {
-  const MyHomeScreen({super.key});
+
+class bottomnav extends StatelessWidget {
+  const bottomnav({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final stories = AppDatabase.stories;
-    final Category = AppDatabase.categories;
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(32, 16, 32, 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Hi, Johnatan',
-                      style: TextStyle(),
-                    ),
-                    Image.asset(
-                      'assets/img/icons/notification.png',
-                      width: 24,
-                      height: 24,
-                    )
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: EdgeInsets.only(left: 32, bottom: 16),
-                child: Text(
-                  'Explore Todays',
-                ),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 100,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: stories.length,
-                    padding: const EdgeInsets.fromLTRB(32, 0, 32, 0),
-                    itemBuilder: (context, index) {
-                      final story = stories[index];
-                      return Container(
-                          width: 68,
-                          height: 68,
-                          margin: const EdgeInsets.fromLTRB(4, 0, 4, 0),
-                          child: Column(
-                            children: [
-                              Stack(
-                                children: [
-                                  profileimage(story),
-                                  Positioned(
-                                    bottom: 0,
-                                    right: 0,
-                                      child: Image.asset(
-                                    'assets/img/icons/${story.iconFileName}',
-                                    width: 24,
-                                    height: 24,
-                                  )),
-                                ],
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              ),
-                              Text(story.name, style: const TextStyle(color: Colors.black),)
-                            ],
-                          ));
-                    }),
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                height: 400,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: Category.length,
-                  itemBuilder: (context, index)
-                
-                 {
-                  final category= Category[index];
-                  return Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 32, 0, 32),
-                    child: postImage(category: category),
-                  );
-                },),
-              )
-            ],
-          ),
-        ),
+    return BottomNavigationBar(items: [
+      BottomNavigationBarItem(
+      icon: Icon(Icons.home_rounded),
+      label: "home"
       ),
-    );
-  }
-
-  Container profileimage(StoryData story) {
-    return Container(
-                                width: 68,
-                                height: 68,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(24),
-                                    gradient: const LinearGradient(
-                                        begin: Alignment.topLeft,
-                                        colors: [
-                                          Color(0xff376aed),
-                                          Color(0xff498ef2),
-                                          Color(0xff9cecf8),
-                                        ])),
-                                child: Container(
-                                  margin: EdgeInsets.all(3),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  padding: EdgeInsets.all(4),
-                                  child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(16),
-                                      child: Image.asset(
-                                          'assets/img/stories/${story.imageFileName}')),
-                                ),
-                              );
-  }
-}
-
-class postImage extends StatelessWidget {
-  const postImage({
-    super.key,
-    required this.category,
-  });
-
-  final Category category;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          height: 200,
-          width: 300,
-          margin: EdgeInsets.only(right: 8),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16)
-          ),
-          foregroundDecoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(32),
-            gradient: LinearGradient(colors:
-            [
-              Color(0xaa0D253c),
-              Colors.transparent
-            ],
-            begin: Alignment.bottomCenter,
-            end: Alignment.center
-            )
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(32),
-            child: Image.asset("assets/img/posts/large/${category.imageFileName}",
-            fit: BoxFit.cover,
-            ),
-          )),
-          Text(category.title,style: Theme.of(context).textTheme.headlineMedium!.apply(color: Colors.white ))
-      ],
-    );
+      BottomNavigationBarItem(icon: Icon(Icons.settings),label: "setting",)
+    ]);
   }
 }
