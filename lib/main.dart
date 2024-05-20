@@ -1,9 +1,6 @@
-import 'package:blog_club/homepage.dart';
 import 'package:blog_club/splashscreen.dart';
-import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +18,12 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
+      theme: ThemeData(elevatedButtonTheme: const ElevatedButtonThemeData(
+        style: ButtonStyle(
+          iconColor: MaterialStatePropertyAll(Colors.white),
+          backgroundColor: MaterialStatePropertyAll(Colors.blue)
+        ) 
+      ),
         primarySwatch: Colors.blue,
         textTheme: const TextTheme(
             headlineLarge: TextStyle(
@@ -44,7 +46,7 @@ class MyApp extends StatelessWidget {
                 fontSize: 12)),
       ),
       // home: const MyHomeScreen(),
-      home: SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }
@@ -55,7 +57,9 @@ class bottomnav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(items: [
+    return BottomNavigationBar(
+      selectedItemColor: Color.fromARGB(255, 26, 123, 214),
+      items: [
       BottomNavigationBarItem(
       icon: Icon(Icons.home_rounded),
       label: "home"

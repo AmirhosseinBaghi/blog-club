@@ -1,4 +1,5 @@
 import 'package:blog_club/homepage.dart';
+import 'package:blog_club/onboarding.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -16,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(Duration(seconds: 2)).then(
         (value) => Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => MyHomeScreen(),
+              builder: (context) => OnBoardingScreen(),
             )));
   }
 
