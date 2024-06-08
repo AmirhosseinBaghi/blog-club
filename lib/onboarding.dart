@@ -1,3 +1,4 @@
+import 'package:blog_club/auth.dart';
 import 'package:blog_club/data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -104,7 +105,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                           
+                           if(page == items.length-1){
+                            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+                              return auth();
+                              // auth();
+                            }, ));
+                           }else{
+                            _pageController.animateToPage(page+1, duration: Duration(milliseconds: 500), curve: Curves.decelerate);
+                           }
                           },
                           style: ButtonStyle(
                               minimumSize:
