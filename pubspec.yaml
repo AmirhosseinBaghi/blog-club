@@ -65,6 +65,7 @@ flutter:
     - assets/img/icons/
     - assets/img/posts/large/
     - assets/img/posts/small/
+    - assets/img/posts/article/
     - assets/img/stories/
     - assets/img/background/
 

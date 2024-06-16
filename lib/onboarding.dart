@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingScreen extends StatefulWidget {
-  const OnBoardingScreen({Key? key}) : super(key: key);
+  const OnBoardingScreen({super.key});
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
@@ -70,7 +70,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             children: [
                               Text(
                                 items[index].title,
-                                style: themeData.textTheme.headline4,
+                                style: themeData.textTheme.headlineMedium,
                               ),
                               const SizedBox(
                                 height: 16,
@@ -107,11 +107,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           onPressed: () {
                            if(page == items.length-1){
                             Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
-                              return auth();
-                              // auth();
+                              return const Auth();
                             }, ));
                            }else{
-                            _pageController.animateToPage(page+1, duration: Duration(milliseconds: 500), curve: Curves.decelerate);
+                            _pageController.animateToPage(page+1, duration: const Duration(milliseconds: 500), curve: Curves.decelerate);
                            }
                           },
                           style: ButtonStyle(

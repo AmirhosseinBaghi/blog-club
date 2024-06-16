@@ -10,8 +10,9 @@ class MyHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final stories = AppDatabase.stories;
     final category = AppDatabase.categories;
+    final post = AppDatabase.posts;
     return Scaffold(
-      bottomNavigationBar: bottomnav(),
+      bottomNavigationBar: const Bottomnav(),
       body: SafeArea(
         child: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
@@ -85,7 +86,7 @@ class MyHomeScreen extends StatelessWidget {
                 height: 350,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  physics: ClampingScrollPhysics(),
+                  physics: const ClampingScrollPhysics(),
                   itemCount: category.length,
                   itemBuilder: (context, index) {
                     final Category = category[index];
@@ -96,8 +97,31 @@ class MyHomeScreen extends StatelessWidget {
                   },
                 ),
               ),
-              const PostItem(),
-            
+               Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Text(
+                'Latest News',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 8.0),
+              child: TextButton(
+                  onPressed: () {},
+                  child: const Text(
+                    'more',
+                    style: TextStyle(color: Colors.blue),
+                  )),
+            )
+          ],
+        ),
+              for(var i=0; i<post.length;i++)
+               PostItem(post: post[i] ),
+              
             ],
           ),
         ),
@@ -177,40 +201,25 @@ class PostImage extends StatelessWidget {
 }
 
 class PostItem extends StatelessWidget {
-  const PostItem({super.key});
+
+   const PostItem({
+    super.key,
+    required this.post,
+  });
+
+  final PostData post;
 
   @override
   Widget build(BuildContext context) {
     final post = AppDatabase.posts;
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: Text(
-                'Latest News',
-                style: Theme.of(context).textTheme.headlineSmall,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'more',
-                    style: TextStyle(color: Colors.blue),
-                  )),
-            )
-          ],
-        ),
-        SizedBox(
+       
+        const SizedBox(
           height: 10,
         ),
         ListView.builder(
-          physics: ClampingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           scrollDirection: Axis.vertical,
           itemExtent: 141,
           shrinkWrap: true,
@@ -218,7 +227,7 @@ class PostItem extends StatelessWidget {
           itemBuilder: (context, index) {
             final Post = post[index];
             return Container(
-              margin: EdgeInsets.fromLTRB(32, 8, 32, 8),
+              margin: const EdgeInsets.fromLTRB(32, 8, 32, 8),
               width: MediaQuery.of(context).size.width,
               height: 149,
               decoration: BoxDecoration(
@@ -230,7 +239,7 @@ class PostItem extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                       child: Image.asset(
                           'assets/img/posts/small/${Post.imageFileName}')),
-                          SizedBox(width: 16,),
+                          const SizedBox(width: 16,),
                     Expanded(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -238,20 +247,20 @@ class PostItem extends StatelessWidget {
                       children: [
                         Text(
                           Post.caption,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w700,
                               color: Color(0xff376AED)),
                         ),
                         Text(Post.title),
-                        SizedBox(height: 8,),
+                        const SizedBox(height: 8,),
                         Row(
                           children: [
-                            Icon(CupertinoIcons.hand_thumbsup,size: 16,),
-                            SizedBox(width: 4,),
+                            const Icon(CupertinoIcons.hand_thumbsup,size: 16,),
+                            const SizedBox(width: 4,),
                             Text(Post.likes),
-                            SizedBox(width: 4,),
-                            Icon(CupertinoIcons.clock, size: 16,),
+                            const SizedBox(width: 4,),
+                            const Icon(CupertinoIcons.clock, size: 16,),
                             Text(Post.time),
                             Expanded(child: Icon(Post.isBookmarked? Icons.bookmark: Icons.bookmark_border))
                           ],

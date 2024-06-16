@@ -2,16 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class auth extends StatefulWidget {
-  const auth({super.key});
+class Auth extends StatefulWidget {
+  const Auth({super.key});
 
   @override
-  State<auth> createState() => _authState();
+  State<Auth> createState() => _AuthState();
 }
 
-class _authState extends State<auth> {
+class _AuthState extends State<Auth> {
   static const int logintab = 0;
-  static const int Singuptab = 1;
+  static const int singuptab = 1;
   int selectedtabIndex = logintab;
   @override
   Widget build(BuildContext context) {
@@ -68,7 +68,7 @@ class _authState extends State<auth> {
                         TextButton(
                           onPressed: () {
                             setState(() {
-                              selectedtabIndex = Singuptab;
+                              selectedtabIndex = singuptab;
                             });
                           },
                           child: Text(
@@ -78,7 +78,7 @@ class _authState extends State<auth> {
                                     fontFamily: 'Avenir',
                                     fontWeight: FontWeight.w500)
                                 .apply(
-                                    color: selectedtabIndex == Singuptab
+                                    color: selectedtabIndex == singuptab
                                         ? Colors.white
                                         : Colors.grey),
                           ),
@@ -96,9 +96,9 @@ class _authState extends State<auth> {
                               topRight: Radius.circular(32)),
                           color: Colors.white),
                       child:  Padding(
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         child: SingleChildScrollView(
-                          child: selectedtabIndex==logintab? Login():Singup(),
+                          child: selectedtabIndex==logintab? const Login():const Singup(),
                         ),
                       ),
                     ))
@@ -156,19 +156,19 @@ class _LoginState extends State<Login> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 24,
         ),
-        Text(
+        const Text(
           'Welcome back',
           style: TextStyle(
               fontFamily: 'Avenir', fontSize: 24, fontWeight: FontWeight.w600),
         ),
-        SizedBox(
+        const SizedBox(
           height: 12,
         ),
-        Text('Sign in with your account'),
-        SizedBox(
+        const Text('Sign in with your account'),
+        const SizedBox(
           height: 24,
         ),
         Column(
@@ -216,7 +216,7 @@ class _LoginState extends State<Login> {
                   'login'.toUpperCase(),
                   style: const TextStyle(color: Colors.white),
                 )),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Row(
@@ -316,19 +316,19 @@ class _SingupState extends State<Singup> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 24,
         ),
-        Text(
+        const Text(
           'Welcome to blog Club',
           style: TextStyle(
               fontFamily: 'Avenir', fontSize: 24, fontWeight: FontWeight.w600),
         ),
-        SizedBox(
+        const SizedBox(
           height: 12,
         ),
-        Text('please enter your information'),
-        SizedBox(
+        const Text('please enter your information'),
+        const SizedBox(
           height: 24,
         ),
         Column(
@@ -380,7 +380,7 @@ class _SingupState extends State<Singup> {
                   suffixIconColor:
                       _hasFocusedNodeFullName ? Colors.blue : Colors.grey),
             ),
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             TextField(
               onTap: () {},
               cursorColor: Colors.blue,
@@ -424,13 +424,13 @@ class _SingupState extends State<Singup> {
                   'sign up'.toUpperCase(),
                   style: const TextStyle(color: Colors.white),
                 )),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Center(
                 child: Text(
               'or sing up with'.toUpperCase(),
-              style: TextStyle(letterSpacing: 2),
+              style: const TextStyle(letterSpacing: 2),
             )),
             SizedBox(
               width: 200,
@@ -508,8 +508,8 @@ class _PasswordTextFildState extends State<PasswordTextFild> {
                 });
               },
               icon: obscureText
-                  ? Icon(CupertinoIcons.eye_fill)
-                  : Icon(CupertinoIcons.eye_slash_fill)),
+                  ? const Icon(CupertinoIcons.eye_fill)
+                  : const Icon(CupertinoIcons.eye_slash_fill)),
           suffixIconColor:
               widget._hasFocosedPassword ? Colors.blue : Colors.grey),
     );
